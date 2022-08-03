@@ -20,6 +20,18 @@ public class Unit : MonoBehaviour
 		targetPosition = transform.position;
 	}
 
+	void Update()
+	{
+		/// Rotate Sprite towards target
+		Vector2 vectorToTarget = targetPosition - (Vector2)transform.position;
+		if (vectorToTarget.magnitude > movementSpeed * Time.deltaTime)
+		{
+			float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg;
+			Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
+			sprite.transform.rotation = Quaternion.Slerp(sprite.transform.rotation, q, rotationSpeed * Time.deltaTime);
+		}
+	}
+
 	void FixedUpdate()
 	{
 
