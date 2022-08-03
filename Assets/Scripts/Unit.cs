@@ -47,11 +47,6 @@ public class Unit : MonoBehaviour
 		}
 	}
 
-	void FixedUpdate()
-	{
-
-	}
-
 	public void SetSelected(bool selected)
 	{
 		sprite.GetComponent<SpriteRenderer>().sprite = selected ? selectedSprite : normalSprite;
