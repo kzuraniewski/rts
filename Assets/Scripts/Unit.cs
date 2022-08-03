@@ -20,33 +20,6 @@ public class Unit : MonoBehaviour
 		targetPosition = transform.position;
 	}
 
-	void Update()
-	{
-		/// Movement
-		if (Vector2.Distance(targetPosition, (Vector2)transform.position) > movementSpeed * Time.deltaTime)
-		{
-			Vector2 offset = new Vector2(
-					targetPosition.x - transform.position.x,
-					targetPosition.y - transform.position.y
-			).normalized * Time.deltaTime * movementSpeed;
-
-			transform.Translate(offset);
-		}
-		else
-		{
-			transform.position = targetPosition;
-		}
-
-		/// Rotation
-		Vector2 vectorToTarget = targetPosition - (Vector2)transform.position;
-		if (vectorToTarget.magnitude > movementSpeed * Time.deltaTime)
-		{
-			float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg;
-			Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
-			sprite.transform.rotation = Quaternion.Slerp(sprite.transform.rotation, q, rotationSpeed * Time.deltaTime);
-		}
-	}
-
 	void FixedUpdate()
 	{
 
