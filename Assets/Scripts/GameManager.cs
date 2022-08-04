@@ -37,11 +37,19 @@ public class GameManager : MonoBehaviour
 		}
 
 		/// Unit control
-		if (Input.GetMouseButtonDown(1))
+		if (Input.GetMouseButton(1))
 		{
-			foreach (Unit unit in selectedUnits)
+			List<Vector2> offsets = UnitPlacement.GetGridOffsets(selectedUnits.Count, 0.2f);
+			foreach (Vector2 offset in offsets)
 			{
-				unit.MoveTo(GetWorldMousePosition());
+				Debug.DrawLine(Vector3.zero, Vector3.zero + (Vector3)offset);
+			}
+
+			Vector2 mousePos = GetWorldMousePosition();
+
+			for (int i = 0; i < selectedUnits.Count; i++)
+			{
+				selectedUnits[i].MoveTo(mousePos + offsets[i]);
 			}
 		}
 	}
