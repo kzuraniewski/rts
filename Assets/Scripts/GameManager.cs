@@ -43,9 +43,12 @@ public class GameManager : MonoBehaviour
 		/// Unit control
 		if (Input.GetMouseButtonDown(1))
 		{
-			foreach (Unit unit in selectedUnits)
+			List<Vector2> offsets = UnitPlacement.GetGridOffsets(selectedUnits.Count, 0.2f);
+			Vector2 mousePos = GetWorldMousePosition();
+
+			for (int i = 0; i < selectedUnits.Count; i++)
 			{
-				unit.MoveTo(GetWorldMousePosition());
+				selectedUnits[i].MoveTo(mousePos + offsets[i]);
 			}
 		}
 	}
